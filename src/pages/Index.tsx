@@ -1,16 +1,37 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Projects from "@/components/Projects";
+import BackToTop from "@/components/BackToTop";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
+  useScrollReveal();
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
+    <>
+      {/* Background effects */}
+      <div className="bg-glow" />
+      <div className="bg-grid" />
+
+      {/* Content */}
+      <div className="relative z-10">
+        <Navbar />
+        <Hero />
+        <About />
+        <Projects />
+
+        {/* Footer */}
+        <footer className="relative z-10 text-center py-12 border-t border-border">
+          <p className="text-sm text-muted-foreground">
+            © 2026 Mariam Ahmed. Built with intention.
+          </p>
+        </footer>
+      </div>
+
+      <BackToTop />
+    </>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
