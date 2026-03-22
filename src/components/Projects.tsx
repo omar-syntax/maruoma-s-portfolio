@@ -20,7 +20,7 @@ const Projects = () => {
               className="project-card relative rounded-[20px] border border-border overflow-hidden cursor-pointer group reveal"
             >
               <img
-                src={`https://placehold.co/600x400/0d1520/a855f7?text=${encodeURIComponent(project.title)}`}
+                src={`https://placehold.co/600x400/0d1520/f97316?text=${encodeURIComponent(project.title)}`}
                 alt={project.title}
                 className="w-full aspect-[3/2] object-cover"
               />
