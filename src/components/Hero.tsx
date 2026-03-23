@@ -1,9 +1,9 @@
-import { Github, Youtube } from "lucide-react";
+import { Github, Youtube, Linkedin } from "lucide-react";
 import characterImg from "@/assets/character.png";
 
 const socialLinks = [
-  { icon: Github, href: "#", label: "GitHub" },
-  { icon: Youtube, href: "#", label: "YouTube" },
+  { icon: Github, href: "https://github.com/Mariem-Ahmed-11", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/mariem-ahmed-salah-47219139b", label: "LinkedIn" },
 ];
 
 const Hero = () => {
@@ -40,7 +40,7 @@ const Hero = () => {
               style={{ fontSize: "clamp(2.5rem, 6vw, 4rem)" }}
             >
               Hi, I'm{" "}
-              <span className="gradient-text">Mariam</span>
+              <span className="gradient-text">Mariem</span>
             </h1>
             <p className="text-muted-foreground mt-4 text-sm leading-relaxed max-w-lg">
               Software Engineering Student at We School of Applied Technology. I build real things — from web dashboards to electromagnetic devices — and I use AI as a tool, not a crutch.
@@ -69,7 +69,7 @@ const Hero = () => {
           <div className="relative">
             <img
               src={characterImg}
-              alt="Mariam Ahmed - 3D character"
+              alt="Mariem Ahmed - 3D character"
               className="w-72 md:w-96 float-animation drop-shadow-2xl"
             />
             {/* Floating tech icons */}

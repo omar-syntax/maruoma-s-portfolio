@@ -6,6 +6,37 @@
 
 @layer base {
   :root {
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 25 95% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 30 90% 48%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 32% 91.4%;
+    --input: 214.3 32% 91.4%;
+    --ring: 25 95% 53%;
+    --radius: 1.25rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 25 95% 53%;
+  }
+
+  .dark {
     --background: 222 47% 7%;
     --foreground: 200 80% 94%;
     --card: 220 40% 10%;
@@ -20,12 +51,11 @@
     --muted-foreground: 215 20% 50%;
     --accent: 25 95% 53%;
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
     --border: 215 40% 18%;
     --input: 215 40% 18%;
     --ring: 25 95% 53%;
-    --radius: 1.25rem;
     --sidebar-background: 220 40% 10%;
     --sidebar-foreground: 200 80% 94%;
     --sidebar-primary: 25 95% 53%;
@@ -45,6 +75,22 @@
     @apply bg-background text-foreground antialiased;
     font-family: 'Roboto', sans-serif;
   }
+
+  /* Custom Scrollbar for Modal and other containers */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: hsl(var(--card));
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 5px;
+    border: 2px solid hsl(var(--card));
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
 }
 
 /* Background grid effect */
@@ -54,9 +100,15 @@
   z-index: 0;
   pointer-events: none;
   background-image:
+    linear-gradient(rgba(120, 140, 160, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 140, 160, 0.1) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.dark .bg-grid {
+  background-image:
     linear-gradient(rgba(30, 45, 65, 0.25) 1px, transparent 1px),
     linear-gradient(90deg, rgba(30, 45, 65, 0.25) 1px, transparent 1px);
-  background-size: 60px 60px;
 }
 
 .bg-glow {
@@ -64,6 +116,10 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  background: radial-gradient(ellipse 60% 40% at 50% 0%, hsla(25, 95%, 53%, 0.05), transparent 70%);
+}
+
+.dark .bg-glow {
   background: radial-gradient(ellipse 60% 40% at 50% 0%, hsla(25, 95%, 53%, 0.1), transparent 70%);
 }
 
@@ -121,9 +177,13 @@
 
 /* Glass effect */
 .glass {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.7);
   border: 1px solid hsl(var(--border));
   backdrop-filter: blur(12px);
+}
+
+.dark .glass {
+  background: rgba(255, 255, 255, 0.04);
 }
 
 /* Scroll reveal */
@@ -171,6 +231,50 @@
 }
 .project-card:hover .project-overlay {
   transform: translateY(0);
+}
+
+/* Infinite Scroll Strip */
+@keyframes scroll-horizontal {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.scroll-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 40px 0;
+}
+
+.scroll-content {
+  display: flex;
+  gap: 24px; /* gap-6 in tailwind */
+  width: max-content;
+  animation: scroll-horizontal 40s linear infinite;
+}
+
+.scroll-content:hover {
+  animation-play-state: paused;
+}
+
+/* Fade Edges */
+.fade-edge-left, .fade-edge-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 150px;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.fade-edge-left {
+  left: 0;
+  background: linear-gradient(to right, hsl(var(--background)), transparent);
+}
+
+.fade-edge-right {
+  right: 0;
+  background: linear-gradient(to left, hsl(var(--background)), transparent);
 }
 
 /* Modal */
@@ -221,4 +325,34 @@
 /* Star shape */
 .star-shape {
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+/* Tooltip */
+.tooltip-content {
+  @apply absolute bottom-full mb-2 px-3 py-1.5 rounded-lg bg-card border border-border text-xs font-medium text-foreground whitespace-nowrap pointer-events-none opacity-0 translate-y-2 transition-all duration-300;
+}
+
+.group:hover .tooltip-content {
+  @apply opacity-100 translate-y-0;
+}
+
+/* Purple glow for BackToTop */
+.purple-glow {
+  @apply absolute inset-0 rounded-full opacity-0 transition-opacity duration-300 pointer-events-none;
+  background: radial-gradient(circle at center, rgba(168, 85, 247, 0.4) 0%, transparent 70%);
+  filter: blur(8px);
+}
+
+.group:hover .purple-glow {
+  @apply opacity-100;
+}
+
+/* Arrow bounce */
+@keyframes arrow-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.group:hover .animate-arrow-bounce {
+  animation: arrow-bounce 0.6s ease-in-out infinite;
 }

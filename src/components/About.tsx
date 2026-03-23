@@ -20,7 +20,7 @@ const About = () => {
             <div className="w-64 h-64 md:w-80 md:h-80 star-shape bg-gradient-to-br from-primary to-secondary opacity-90" />
             <img
               src={characterImg}
-              alt="Mariam Ahmed"
+              alt="Mariem Ahmed"
               className="absolute inset-0 w-64 h-64 md:w-80 md:h-80 object-contain drop-shadow-xl"
             />
           </div>
@@ -35,7 +35,7 @@ const About = () => {
           </div>
 
           <p className="text-muted-foreground text-sm leading-relaxed">
-            I'm Mariam Ahmed, a Software Engineering student at We School of Applied Technology. I don't wait until I'm "ready" — I ship under pressure and learn whatever technology is needed along the way. From NFC attendance systems to electromagnetic healing devices, every project I've built involved tech I'd never touched before starting.
+            I'm Mariem Ahmed, a Software Engineering student at We School of Applied Technology. I don't wait until I'm "ready" — I ship under pressure and learn whatever technology is needed along the way. From NFC attendance systems to electromagnetic healing devices, every project I've built involved tech I'd never touched before starting.
           </p>
 
           <p className="text-muted-foreground text-sm leading-relaxed">

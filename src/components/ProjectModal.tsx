@@ -43,7 +43,7 @@ const ProjectModal = ({ project, onClose }: Props) => {
 
       {/* Modal */}
       <div
-        className="relative bg-card border border-border rounded-[20px] w-full max-w-3xl max-h-[90vh] overflow-y-auto modal-enter"
+        className="relative bg-card border border-border rounded-[20px] w-full max-w-3xl max-h-[90vh] overflow-y-auto custom-scrollbar modal-enter"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close */}
@@ -153,6 +153,19 @@ const ProjectModal = ({ project, onClose }: Props) => {
             <h4 className="text-sm font-bold text-foreground mb-2">Key Takeaway</h4>
             <p className="text-sm text-muted-foreground leading-relaxed">{project.takeaway}</p>
           </div>
+
+          {/* Live Preview */}
+          {project.liveUrl && (
+            <div className="pt-4">
+              <h4 className="text-sm font-bold text-foreground mb-3">Live Preview</h4>
+              <iframe
+                src={project.liveUrl}
+                title={`${project.title} Live Preview`}
+                className="w-full h-[500px] md:h-[60vh] border border-border rounded-xl bg-card"
+                allow="fullscreen"
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>
