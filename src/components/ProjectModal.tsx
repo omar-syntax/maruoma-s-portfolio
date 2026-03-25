@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
+import { Link } from "react-router-dom";
 import type { Project } from "@/data/projects";
 
 interface Props {
@@ -166,6 +167,17 @@ const ProjectModal = ({ project, onClose }: Props) => {
               />
             </div>
           )}
+
+          {/* Full Page Button */}
+          <div className="pt-6 border-t border-border flex justify-end">
+            <Link
+              to={`/projects/${project.id}`}
+              onClick={onClose}
+              className="btn-gradient px-6 py-3 rounded-xl text-sm font-bold flex items-center gap-2 hover:scale-105 transition-transform"
+            >
+              View Full Page →
+            </Link>
+          </div>
         </div>
       </div>
     </div>

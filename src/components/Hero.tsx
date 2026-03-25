@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Github, Youtube, Linkedin } from "lucide-react";
 import characterImg from "@/assets/character.png";
 
@@ -6,7 +7,43 @@ const socialLinks = [
   { icon: Linkedin, href: "https://www.linkedin.com/in/mariem-ahmed-salah-47219139b", label: "LinkedIn" },
 ];
 
+const titles = [
+  "Software Engineering Student",
+  "React Developer",
+  "UI/UX Enthusiast",
+  "Vibe Engineer",
+  "Problem Solver",
+];
+
 const Hero = () => {
+  const [titleIndex, setTitleIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [speed, setSpeed] = useState(70);
+
+  useEffect(() => {
+    const handleTyping = () => {
+      const currentTitle = titles[titleIndex];
+      if (isDeleting) {
+        setDisplayText(currentTitle.substring(0, displayText.length - 1));
+        setSpeed(25);
+      } else {
+        setDisplayText(currentTitle.substring(0, displayText.length + 1));
+        setSpeed(70);
+      }
+
+      if (!isDeleting && displayText === currentTitle) {
+        setTimeout(() => setIsDeleting(true), 1000);
+      } else if (isDeleting && displayText === "") {
+        setIsDeleting(false);
+        setTitleIndex((prev) => (prev + 1) % titles.length);
+      }
+    };
+
+    const timer = setTimeout(handleTyping, speed);
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, titleIndex, speed]);
+
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
@@ -42,7 +79,12 @@ const Hero = () => {
               Hi, I'm{" "}
               <span className="gradient-text">Mariem</span>
             </h1>
-            <p className="text-muted-foreground mt-4 text-sm leading-relaxed max-w-lg">
+            <div className="h-8 mt-2">
+              <p className="text-xl md:text-2xl font-bold text-foreground/80">
+                <span className="pr-1 animate-pulse-cursor">{displayText}</span>
+              </p>
+            </div>
+            <p className="text-muted-foreground mt-6 text-sm leading-relaxed max-w-lg">
               Software Engineering Student at We School of Applied Technology. I build real things — from web dashboards to electromagnetic devices — and I use AI as a tool, not a crutch.
             </p>
           </div>

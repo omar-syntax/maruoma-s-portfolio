@@ -1,4 +1,5 @@
 import characterImg from "@/assets/character.png";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const stats = [
   { value: "3+", label: "Projects Shipped" },
@@ -7,6 +8,10 @@ const stats = [
 ];
 
 const About = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
@@ -53,10 +58,10 @@ const About = () => {
           </div>
 
           <button
-            onClick={() => scrollTo("skills")}
+            onClick={() => isHome ? navigate("/about") : scrollTo("skills")}
             className="btn-gradient px-6 py-3 rounded-lg text-sm font-medium mt-2"
           >
-            Learn More
+            {isHome ? "Learn More" : "View Skills"}
           </button>
         </div>
       </div>

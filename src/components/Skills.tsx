@@ -48,16 +48,20 @@ const Skills = () => {
               <span className="text-sm font-semibold text-foreground">{skill.name}</span>
             </div>
 
-            <div className="space-y-1.5">
-              <div className="flex justify-between">
-                <span className="text-[11px] text-muted-foreground">Proficiency</span>
-                <span className="text-[11px] font-medium" style={{ color: skill.color }}>{skill.proficiency}%</span>
+            <div className="space-y-2">
+              <div className="flex justify-between items-end">
+                <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">
+                  {skill.proficiency >= 85 ? "Advanced" : skill.proficiency >= 70 ? "Intermediate" : "Learning"}
+                </span>
+                <span className="text-xs font-bold" style={{ color: skill.color }}>{skill.proficiency}%</span>
               </div>
-              <div className="proficiency-bar">
+              <div className="proficiency-bar bg-muted/30">
                 <div
-                  className="proficiency-fill"
+                  className="proficiency-fill relative overflow-hidden"
                   style={{ width: `${skill.proficiency}%`, background: skill.color }}
-                />
+                >
+                  <div className="absolute inset-0 bg-white/20 animate-pulse" />
+                </div>
               </div>
             </div>
           </div>
